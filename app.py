@@ -5,6 +5,18 @@ import time
 app = Flask(__name__)
 app.secret_key= '04c816ee38ea4ee1843c22a6e67d8406'
 
+# def getPosts(InstagramAPI,user_id):
+# 	posts = []
+# 	has_more_posts = True
+# 		max_id=""
+# 		while has_more_posts:
+# 		    InstagramAPI.getSelfUserFeed(maxid=max_id)
+# 		    if InstagramAPI.LastJson['more_available'] is not True:
+# 		        has_more_posts = False 		    
+# 		    max_id = InstagramAPI.LastJson.get('next_max_id','')
+# 		    myposts.extend(InstagramAPI.LastJson['items']) 
+# 		    time.sleep(2)
+# 	return posts
 
 def getFollowers(InstagramAPI,user_id):
 	followers = []
@@ -57,6 +69,12 @@ def profile():
 		 		InstagramAPI.LastJson['user']['profile_pic_url'] ,
 		 		bio ]
 		import time
+
+		myposts=[]
+		  
+		    
+		# print len(myposts)
+
 		followers = []
 		following = []
 		followers_list = getFollowers(InstagramAPI,user_id)

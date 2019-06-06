@@ -10,9 +10,15 @@
     <style type="text/css">
     	#aboutme{
     		background-color: #8FE1EF;
+    		border-right: 10px solid #FDCA1C;
+    		border-bottom: 1px solid grey;
+
     	}
     	#stats{
     		background-color: #96A0D3;
+    		border-right: 10px solid #FDCA1C;
+    		border-bottom: 1px solid grey;
+
     	}
     	.infoblock{
     		margin-bottom: 10%;
@@ -20,7 +26,7 @@
     	.infowrapper{
     		
     		transition-duration: 0.3s;
-    		border-radius: 3%;
+    		border-radius: 10px;
     		background-color: #DFDFDF;
     	}
     	.infowrapper:hover{
@@ -36,7 +42,7 @@
     		color: #FF869E;
     	}
     	.wrapper{
-    		padding: 10%;
+    		padding: 8%;
     		padding-bottom: 8%;
     	}
     	.wrapper2{
@@ -55,7 +61,7 @@
     	}
     	p{
     		padding: 3%;
-    		font-size: 120%;
+    		font-size: 120%;    		
 	    }
 	    .primaryhead{
 	    	font-size: 130%;
@@ -65,10 +71,12 @@
 	    	padding:0;
 	    	font-family: 'Quattrocento', serif; 
 	    }
+	    button{
+	    	margin-bottom: 5%;
+	    }
     	body{
     		font-family: 'Quattrocento Sans', sans-serif;
     	}
-    	
 
     </style>
     
@@ -81,70 +89,72 @@
 	      	<div class="text-center wrapper">
 	      		<h1>Mehhh...</h1>
 	      		<div class="imagewrapper">
-  					<img class = "dp" src="../static/temp" style="border-radius: 50%; border: 3px solid #406060" alt="Profile Picture">
+  					<img class = "dp" src="{{me[2]}}" style="border-radius: 50%; border: 3px solid #406060" alt="Profile Picture">
   				</div>
   				<h2 class="username" onclick="location.href='https://www.instagram.com/{{me[0]}}/'">@<span>{{me[0]}}</span></h2>
   				<p class="primaryhead">{{me[1]}}</p>
   				
+  				<p class="bio">
   				{% for ele in me[3] %}
-  					<p class="bio">{{ele}}</p>
+  				{{ele}}</br>
   				{% endfor %}
+  				</p>
 
   				<!-- <p class="bio">{{me[4]}}</p>  				 -->
 			</div>
-			<center><a href="#">Logout</a></center>
+			<center><button class="btn btn-primary btn-danger"><a style="color: white; text-decoration: none;" href="{{url_for('home')}}">Logout</a></button></center>
 	   	</div>
 
 	   	<div class="col col-md-7" id = "stats">
 	    	<div class="text-center wrapper2">
 	      		<h1>Stats...</h1>
 	      	</div>
-	      	<div class="container">
-	      		<div class="row">
-	      			<div class="col infoblock">
-	      				<div class="infowrapper">
-		      				<div class="text-center">
-		      					<h1>43</h1>
-		      					<h4>Posts</h4>
+		      	<div class="container">
+		      		<div class="row">
+		      			<div class="col infoblock">
+		      				<div class="infowrapper">
+			      				<div class="text-center">
+			      					<h1>43</h1>
+			      					<h4>Posts</h4>
+			      				</div>
+			      			</div>
+		      			</div>
+		      			<div class="col infoblock">
+		      				<div class="infowrapper">
+			      				<div class="text-center">
+			      					<h1>717</h1>
+			      					<h4>Followers</h4>
+			      				</div>
+			      			</div>
+		      			</div>
+		      			<div class="col infoblock">
+			      			<div class="infowrapper">	
+			      				<div class="text-center">
+			      					<h1>430</h1>
+			      					<h4>Following</h4>
+			      				</div>
+			      			</div>
+		      			</div>
+		      		</div>
+		      		<div class="row">
+		      			<div class="col infoblock">
+		      				<div class="infowrapper">
+		      					<div class="text-center">
+		      						<h1>433</h1>
+		      						<h4>Fans</h4>
+		      					</div>
 		      				</div>
 		      			</div>
-	      			</div>
-	      			<div class="col infoblock">
-	      				<div class="infowrapper">
-		      				<div class="text-center">
-		      					<h1>717</h1>
-		      					<h4>Followers</h4>
-		      				</div>
+		      			<div class="col infoblock">
+		      				<div class="infowrapper">
+			      				<div class="text-center">	
+			      					<h1>32</h1>
+			      					<h4>Celebs</h4>
+			      				</div>
+			      			</div>
 		      			</div>
-	      			</div>
-	      			<div class="col infoblock">
-		      			<div class="infowrapper">	
-		      				<div class="text-center">
-		      					<h1>430</h1>
-		      					<h4>Following</h4>
-		      				</div>
-		      			</div>
-	      			</div>
-	      		</div>
-	      		<div class="row">
-	      			<div class="col infoblock">
-	      				<div class="infowrapper">
-	      					<div class="text-center">
-	      						<h1>433</h1>
-	      						<h4>Fans</h4>
-	      					</div>
-	      				</div>
-	      			</div>
-	      			<div class="col infoblock">
-	      				<div class="infowrapper">
-		      				<div class="text-center">	
-		      					<h1>32</h1>
-		      					<h4>Celebs</h4>
-		      				</div>
-		      			</div>
-	      			</div>
-	      		</div>
-	      	</div>
+		      		</div>
+		      	</div>
 	      	</div>
 	    </div>
 
