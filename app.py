@@ -50,23 +50,27 @@ def profile():
 		InstagramAPI.getProfileData()
 		user_id= InstagramAPI.LastJson['user']['pk']
 
+		bio = InstagramAPI.LastJson['user']['biography']
+		bio = bio.split('\n')
+		# print(bio)
 		me = [ InstagramAPI.LastJson['user']['username'] ,
 		 		InstagramAPI.LastJson['user']['full_name'] ,
 		 		InstagramAPI.LastJson['user']['profile_pic_url'] ,
-		 		InstagramAPI.LastJson['user']['biography'] ]
-		print(me)
-		import time
-		followers = []
-		following = []
-		followers_list = getFollowers(InstagramAPI,user_id)
-		following_list = getFollowing(InstagramAPI,user_id)
-		followers_list_usernames = [ele['username'] for ele in followers_list]
-		following_list_usernames = [ele['username'] for ele in following_list]
+		 		bio ]
+		# print(me)
+		# import time
+		# followers = []
+		# following = []
+		# followers_list = getFollowers(InstagramAPI,user_id)
+		# following_list = getFollowing(InstagramAPI,user_id)
+		# followers_list_usernames = [ele['username'] for ele in followers_list]
+		# following_list_usernames = [ele['username'] for ele in following_list]
 
-		fans = set(followers_list_usernames).difference(set(following_list_usernames))
-		celebs = set(following_list_usernames).difference(set(followers_list_usernames))
+		# fans = set(followers_list_usernames).difference(set(following_list_usernames))
+		# celebs = set(following_list_usernames).difference(set(followers_list_usernames))
 
-	return render_template('profile.html' , me = me ,followers = followers , following = following , fans = fans , celebs = celebs)
+		#append after me = me : ,followers = followers , following = following , fans = fans , celebs = celebs
+	return render_template('profile.html' , me = me)
 
 if __name__ == '__main__':
     app.run(port=5000,debug = True)
