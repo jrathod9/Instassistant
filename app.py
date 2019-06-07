@@ -5,18 +5,22 @@ import time
 app = Flask(__name__)
 app.secret_key= '04c816ee38ea4ee1843c22a6e67d8406'
 
-# def getPosts(InstagramAPI,user_id):
-# 	posts = []
-# 	has_more_posts = True
-# 		max_id=""
-# 		while has_more_posts:
-# 		    InstagramAPI.getSelfUserFeed(maxid=max_id)
-# 		    if InstagramAPI.LastJson['more_available'] is not True:
-# 		        has_more_posts = False 		    
-# 		    max_id = InstagramAPI.LastJson.get('next_max_id','')
-# 		    myposts.extend(InstagramAPI.LastJson['items']) 
-# 		    time.sleep(2)
-# 	return posts
+def getPosts(InstagramAPI,user_id):
+	import time
+	myposts=[]
+	has_more_posts = True
+	next_max_id = True
+	max_id=""
+	while has_more_posts:
+	    InstagramAPI.getSelfUserFeed(maxid=max_id)
+	    if InstagramAPI.LastJson['more_available'] is not True:
+	        has_more_posts = False 
+	        # print "stopped"
+	    
+	    max_id = InstagramAPI.LastJson.get('next_max_id','')
+	    myposts.extend(InstagramAPI.LastJson['items']) #merge lists
+	    time.sleep(2) # Slows the script down to avoid flooding the servers 
+	return myposts
 
 def getFollowers(InstagramAPI,user_id):
 	followers = []
@@ -25,7 +29,7 @@ def getFollowers(InstagramAPI,user_id):
 	next_max_id = True
 	while next_max_id:
 	    if next_max_id == True:
-	            next_max_id = ''
+	        next_max_id = ''
 	    _ = InstagramAPI.getUserFollowers(user_id,maxid = next_max_id)
 	    followers.extend(InstagramAPI.LastJson.get('users',[]))
 	    next_max_id = InstagramAPI.LastJson.get('next_max_id','')
@@ -70,9 +74,9 @@ def profile():
 		 		bio ]
 		import time
 
-		myposts=[]
+		myposts = getPosts(InstagramAPI,user_id)
+		# print(myposts[0])
 		  
-		    
 		# print len(myposts)
 
 		followers = []
@@ -85,7 +89,7 @@ def profile():
 		fans = set(followers_list_usernames).difference(set(following_list_usernames))
 		celebs = set(following_list_usernames).difference(set(followers_list_usernames))
 
-	return render_template('profile.html' , me = me ,followers = followers , following = following , fans = fans , celebs = celebs)
+	return render_template('profile.html' ,myposts = myposts, me = me ,followers = followers_list , following = following_list , fans = fans , celebs = celebs)
 
 if __name__ == '__main__':
     app.run(port=5000,debug = True)

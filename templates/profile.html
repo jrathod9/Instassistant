@@ -20,6 +20,11 @@
     		border-bottom: 1px solid grey;
 
     	}
+    	.back{
+    		background-color: #DFDFDF;
+    		border-radius: 10px;
+    		padding: 2%; 
+    	}
     	.infoblock{
     		margin-bottom: 10%;
     	}
@@ -91,15 +96,16 @@
 	      		<div class="imagewrapper">
   					<img class = "dp" src="{{me[2]}}" style="border-radius: 50%; border: 3px solid #406060" alt="Profile Picture">
   				</div>
-  				<h2 class="username" onclick="location.href='https://www.instagram.com/{{me[0]}}/'">@<span>{{me[0]}}</span></h2>
-  				<p class="primaryhead">{{me[1]}}</p>
-  				
-  				<p class="bio">
-  				{% for ele in me[3] %}
-  				{{ele}}</br>
-  				{% endfor %}
-  				</p>
-
+  				<div class="container back">
+	  				<h2 class="username" onclick="location.href='https://www.instagram.com/{{me[0]}}/'">@<span>{{me[0]}}</span></h2>
+	  				<p class="primaryhead">{{me[1]}}</p>
+	  				
+	  				<p class="bio">
+	  				{% for ele in me[3] %}
+	  				{{ele}}</br>
+	  				{% endfor %}
+	  				</p>
+  				</div>
   				<!-- <p class="bio">{{me[4]}}</p>  				 -->
 			</div>
 			<center><button class="btn btn-primary btn-danger"><a style="color: white; text-decoration: none;" href="{{url_for('home')}}">Logout</a></button></center>
@@ -114,7 +120,7 @@
 		      			<div class="col infoblock">
 		      				<div class="infowrapper">
 			      				<div class="text-center">
-			      					<h1>43</h1>
+			      					<h1>{{myposts|length}}</h1>
 			      					<h4>Posts</h4>
 			      				</div>
 			      			</div>
@@ -122,7 +128,7 @@
 		      			<div class="col infoblock">
 		      				<div class="infowrapper">
 			      				<div class="text-center">
-			      					<h1>717</h1>
+			      					<h1>{{followers|length}}</h1>
 			      					<h4>Followers</h4>
 			      				</div>
 			      			</div>
@@ -130,7 +136,7 @@
 		      			<div class="col infoblock">
 			      			<div class="infowrapper">	
 			      				<div class="text-center">
-			      					<h1>430</h1>
+			      					<h1>{{following|length}}</h1>
 			      					<h4>Following</h4>
 			      				</div>
 			      			</div>
@@ -140,7 +146,7 @@
 		      			<div class="col infoblock">
 		      				<div class="infowrapper">
 		      					<div class="text-center">
-		      						<h1>433</h1>
+		      						<h1>{{fans|length}}</h1>
 		      						<h4>Fans</h4>
 		      					</div>
 		      				</div>
@@ -148,7 +154,7 @@
 		      			<div class="col infoblock">
 		      				<div class="infowrapper">
 			      				<div class="text-center">	
-			      					<h1>32</h1>
+			      					<h1>{{celebs|length}}</h1>
 			      					<h4>Celebs</h4>
 			      				</div>
 			      			</div>
