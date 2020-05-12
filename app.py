@@ -3,7 +3,7 @@ from InstagramAPI import InstagramAPI
 import time
 
 app = Flask(__name__)
-app.secret_key= '04c816ee38ea4ee1843c22a6e67d8406'
+app.secret_key= ''
 
 def getPosts(InstagramAPI,user_id):
 	import time
